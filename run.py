@@ -62,18 +62,8 @@ def start_game(game, word_list):
     game.guesses = []
     game.misses = 0
 
-    guesse = input("Guess a letter: ").upper()
-
-    if not guesse.isalpha() or len(guesse) !=1:
-        print("Invalid input. Please enter a single alphabetic character.")
+    check_guess(game, input("Guess a letter: ").upper())
     
-    if guesse in game.guesses:
-        print("You've already guessed this letter. Try again.")
-
-    game.guesses.append(guesse)
-
-    if guesse not in game.word:
-        game.misses += 1
 
     print(game.misses)
     print(game.guesses)
@@ -81,5 +71,40 @@ def start_game(game, word_list):
     return game.word
 
 game = HangmanGame()
-print(start_game(game, EASY_WORDS))
+# print(start_game(game, EASY_WORDS))
 
+def check_guess(game, guess):
+    """
+    Check the player's guessed letter, update the game state, and handle invalid inputs with error messages.
+    
+    Args:
+        game (HangmanGame): The game instance.
+        guess (str): The letter guessed by the player. 
+    """
+    word_list = ["apple", "ball", "cat", "dog", "egg", "fish", "goat", "hat", "ink", "jug",
+    "kite", "lamp", "moon", "nest", "owl", "pen", "queen", "rat", "sun", "tree"]
+    game.word = random.choice(word_list).upper()
+    game.guesses = []
+    game.misses = 0
+
+    try:
+        if not guess.isalpha() or len(guess) != 1:
+            print("Please enter a single alphabetic character.")
+        
+        if guess in game.guesses:
+            print(f"You've already guessed {guess} letter.")
+        
+        game.guesses.append(guess)
+
+        if guess not in game.word:
+            game.misses += 1
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+    print(game.misses)
+    print(game.guesses)
+    print(guess)
+    return game.word
+        
+result = check_guess(game, input("Guess a letter: ").upper())
