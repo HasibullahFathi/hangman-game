@@ -1,4 +1,8 @@
 import random
+import ascii_art
+
+
+STAGES = ascii_art.stages
 
 EASY_WORDS = [
     "apple", "ball", "cat", "dog", "egg", "fish", "goat", "hat", "ink", "jug",
@@ -50,28 +54,6 @@ class HangmanGame:
             else:
                 print(f'Invalid level {self.level}. Please choose Easy, Medium or Hard.')
 
-def start_game(game, word_list):
-    """
-    Start the Hangman game with the given word list and manage the game loop.
-
-    Args:
-        game (HangmanGame): The game instance.
-        word_list (list): The list of words to choose from based on the selected difficulty level.
-    """
-    game.word = random.choice(word_list).upper()
-    game.guesses = []
-    game.misses = 0
-
-    check_guess(game, input("Guess a letter: ").upper())
-    
-
-    print(game.misses)
-    print(game.guesses)
-    print(guesse)
-    return game.word
-
-game = HangmanGame()
-# print(start_game(game, EASY_WORDS))
 
 def check_guess(game, guess):
     """
@@ -81,11 +63,6 @@ def check_guess(game, guess):
         game (HangmanGame): The game instance.
         guess (str): The letter guessed by the player. 
     """
-    word_list = ["apple", "ball", "cat", "dog", "egg", "fish", "goat", "hat", "ink", "jug",
-    "kite", "lamp", "moon", "nest", "owl", "pen", "queen", "rat", "sun", "tree"]
-    game.word = random.choice(word_list).upper()
-    game.guesses = []
-    game.misses = 0
 
     try:
         if not guess.isalpha() or len(guess) != 1:
@@ -102,9 +79,29 @@ def check_guess(game, guess):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-    print(game.misses)
+def start_game(game, word_list):
+    """
+    Start the Hangman game with the given word list and manage the game loop.
+
+    Args:
+        game (HangmanGame): The game instance.
+        word_list (list): The list of words to choose from based on the selected difficulty level.
+    """
+    game.word = random.choice(word_list).upper()
+    game.guesses = []
+    game.misses = 0
+
+    check_guess(game, input("Guess a letter: ").upper())
+
+    print(game.word)
     print(game.guesses)
-    print(guess)
-    return game.word
+
+    print(STAGES[game.misses])
+    print(f"Misses: {game.misses}")
+
+
+game = HangmanGame()
+start_game(game, EASY_WORDS)
+
+
         
-result = check_guess(game, input("Guess a letter: ").upper())
