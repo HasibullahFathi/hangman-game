@@ -62,6 +62,22 @@ def start_game(game, word_list):
     game.guesses = []
     game.misses = 0
 
+    guesse = input("Guess a letter: ").upper()
+
+    if not guesse.isalpha() or len(guesse) !=1:
+        print("Invalid input. Please enter a single alphabetic character.")
+    
+    if guesse in game.guesses:
+        print("You've already guessed this letter. Try again.")
+
+    game.guesses.append(guesse)
+
+    if guesse not in game.word:
+        game.misses += 1
+
+    print(game.misses)
+    print(game.guesses)
+    print(guesse)
     return game.word
 
 game = HangmanGame()
