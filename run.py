@@ -1,3 +1,4 @@
+import random
 
 EASY_WORDS = [
     "apple", "ball", "cat", "dog", "egg", "fish", "goat", "hat", "ink", "jug",
@@ -48,8 +49,21 @@ class HangmanGame:
                 return  HARD_WORDS
             else:
                 print(f'Invalid level {self.level}. Please choose Easy, Medium or Hard.')
-        
 
+def start_game(game, word_list):
+    """
+    Start the Hangman game with the given word list and manage the game loop.
 
-level = HangmanGame()
-print(level.choose_game_level())
+    Args:
+        game (HangmanGame): The game instance.
+        word_list (list): The list of words to choose from based on the selected difficulty level.
+    """
+    game.word = random.choice(word_list).upper()
+    game.guesses = []
+    game.misses = 0
+
+    return game.word
+
+game = HangmanGame()
+print(start_game(game, EASY_WORDS))
+
