@@ -101,10 +101,10 @@ def check_guess(game, guess):
 
     try:
         if not guess.isalpha() or len(guess) != 1:
-            print("Please enter a single alphabetic character.")
+            raise ValueError(f"{guess} is not accpeted, please enter a single alphabetic letter.")
         
         if guess in game.guesses:
-            print(f"You've already guessed {guess} letter.")
+            raise ValueError(f"You've already guessed {guess} letter.")
         
         game.guesses.append(guess)
 
@@ -130,9 +130,9 @@ def check_game_over(game):
         print("Congratulations! You won!")
         return True
 
-    if game.misses >= game.max_misses:
-        print(f"Game Over! You lost, the word was {game.word}")
+    if game.misses == game.max_misses:
         update_display(game)
+        print(f"Game Over! You lost, the word was {game.word}")
         return True
 
     return False
