@@ -100,7 +100,6 @@ def update_display(game):
 
 
 
-
 def start_game(game, word_list):
     """
     Start the Hangman game with the given word list and manage the game loop.
@@ -113,11 +112,34 @@ def start_game(game, word_list):
     game.guesses = []
     game.misses = 0
 
-    check_guess(game, input("Guess a letter: ").upper())
+    while not check_game_over(game):
+        print("\n")
+        update_display(game)
+        check_guess(game, input("Guess a letter: ").upper())
 
     print(game.word)
     print(game.guesses)
-    update_display(game)
+
+
+def check_game_over(game):
+    """
+    Check if the game is over (either the player has won or lost).
+
+    Args:
+        game (HangmanGame): The game instance.
+
+    Returns:
+        bool: True if the game is over, False otherwise.
+    """
+    if game.misses == game.max_misses:
+        print("Game Over! You lost.")
+        return True
+
+    if all(letter in game.guesses for letter in game.word):
+        print("Congratulations! You won!")
+        return True
+
+    return False
 
 
 print("Welcome to the Hangman Game!!!")
