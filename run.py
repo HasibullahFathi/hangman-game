@@ -1,4 +1,7 @@
 import random
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
 import ascii_art
 
 
@@ -53,7 +56,7 @@ class HangmanGame:
             elif self.level == "hard":
                 return  HARD_WORDS
             else:
-                print(f'Invalid level {self.level}. Please choose Easy, Medium or Hard.')
+                print(f'Invalid level "{Fore.RED}{self.level}{Fore.RESET}". Please choose Easy, Medium or Hard.')
 
 
 def start_game(game, word_list):
@@ -83,10 +86,10 @@ def update_display(game):
         game (HangmanGame): The game instance.
     """
 
-    print(STAGES[game.misses])
+    print(f"{Fore.YELLOW}{STAGES[game.misses]}")
     display_word = " ".join([letter if letter in game.guesses else "_" for letter in game.word])
     print(display_word)
-    print(f"Misses: {game.misses}")
+    print(f"Misses: {Fore.CYAN}{game.misses}")
 
 
 
@@ -101,10 +104,10 @@ def check_guess(game, guess):
 
     try:
         if not guess.isalpha() or len(guess) != 1:
-            raise ValueError(f"{guess} is not accpeted, please enter a single alphabetic letter.")
+            raise ValueError(f'{Fore.RED}"{guess}"{Fore.RESET} is not accpeted, please enter a single alphabetic letter.')
         
         if guess in game.guesses:
-            raise ValueError(f"You've already guessed {guess} letter.")
+            raise ValueError(f"You've already guessed {Fore.RED}'{guess}'{Fore.RESET} letter.")
         
         game.guesses.append(guess)
 
@@ -127,19 +130,19 @@ def check_game_over(game):
 
     if all(letter in game.guesses for letter in game.word):
         update_display(game)
-        print("Congratulations! You won!")
+        print(f"{Fore.GREEN}Congratulations! You won!")
         return True
 
     if game.misses == game.max_misses:
         update_display(game)
-        print(f"Game Over! You lost, the word was {game.word}")
+        print(f'{Fore.RED}Game Over! You lost, the word was "{game.word}"')
         return True
 
     return False
 
 
-print("Welcome to the Hangman Game!!!")
-print(f"{LOGO}\n")
+print(f"{Style.BRIGHT}{Back.RED}Welcome to the Hangman Game!!!")
+print(f"{Fore.RED}{LOGO}\n")
 
 def main():
     """
@@ -152,13 +155,13 @@ def main():
 main()
 
 
-# Create a loop to run the game after game over if the user wants to play the game again.
+# Create a loop to run the game after game over, if the user wants to play the game again.
 while True:
         play_again = input("Do you want to play again? (Y/N): ").lower()
         if play_again == "y":
             main()
         elif play_again == "n":
-            print("Thanks for playing!")
+            print(f"{Fore.BLUE}Thanks for playing!")
             break
         else:
-            print(f'Invalid input "{play_again}". Please enter Y or N.')
+            print(f'Invalid input "{Back.RED}{play_again}{Back.RESET}". Please enter Y or N.')
