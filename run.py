@@ -79,6 +79,27 @@ def check_guess(game, guess):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
+def update_display(game):
+    """
+    Update and print the display to show the current state of the game, including the word progress and number of misses.
+    
+    Args:
+        game (HangmanGame): The game instance.
+    """
+
+    print(STAGES[game.misses])
+
+    for letter in game.word:
+        if letter in game.guesses:
+            print(letter, end=" ")
+        else:
+            print("_", end=" ")
+
+    print(f"Misses: {game.misses}")
+
+
+
+
 def start_game(game, word_list):
     """
     Start the Hangman game with the given word list and manage the game loop.
@@ -95,13 +116,18 @@ def start_game(game, word_list):
 
     print(game.word)
     print(game.guesses)
-
-    print(STAGES[game.misses])
-    print(f"Misses: {game.misses}")
+    update_display(game)
 
 
-game = HangmanGame()
-start_game(game, EASY_WORDS)
+print("Welcome to the Hangman Game!!!\n")
 
+def main():
+    """
+    Main function to initialize and start the Hangman game.
+    """
+    game = HangmanGame()
+    word_list = game.choose_game_level()
+    start_game(game, word_list)
 
+main()
         
