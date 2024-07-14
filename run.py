@@ -48,7 +48,7 @@ class HangmanGame:
         while : validates that the player is typing the level correctly to choose the difficulty level.
         """
         while True:
-            self.level = input("Choose one of the difficulty levels: Easy, Medium or Hard to play: ").lower()
+            self.level = input("Choose one of the difficulty levels: Easy, Medium or Hard to play: \n").lower()
             if self.level == "easy":
                 return EASY_WORDS
             elif self.level == "medium":
@@ -74,7 +74,7 @@ def start_game(game, word_list):
     while not check_game_over(game):
         print("\n")
         update_display(game)
-        check_guess(game, input("Guess a letter: ").upper())
+        check_guess(game, input("Guess a letter: \n").upper())
 
 
 
@@ -157,7 +157,7 @@ main()
 
 # Create a loop to run the game after game over, if the user wants to play the game again.
 while True:
-        play_again = input("Do you want to play again? (Y/N): ").lower()
+        play_again = input("Do you want to play again? (Y/N): \n").lower()
         if play_again == "y":
             main()
         elif play_again == "n":
