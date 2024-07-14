@@ -56,6 +56,40 @@ class HangmanGame:
                 print(f'Invalid level {self.level}. Please choose Easy, Medium or Hard.')
 
 
+def start_game(game, word_list):
+    """
+    Start the Hangman game with the given word list and manage the game loop.
+
+    Args:
+        game (HangmanGame): The game instance.
+        word_list (list): The list of words to choose from based on the selected difficulty level.
+    """
+    game.word = random.choice(word_list).upper()
+    game.guesses = []
+    game.misses = 0
+
+    while not check_game_over(game):
+        print("\n")
+        update_display(game)
+        check_guess(game, input("Guess a letter: ").upper())
+
+
+
+def update_display(game):
+    """
+    Update and print the display to show the current state of the game, including the word progress and number of misses.
+    
+    Args:
+        game (HangmanGame): The game instance.
+    """
+
+    print(STAGES[game.misses])
+    display_word = " ".join([letter if letter in game.guesses else "_" for letter in game.word])
+    print(display_word)
+    print(f"Misses: {game.misses}")
+
+
+
 def check_guess(game, guess):
     """
     Check the player's guessed letter, update the game state, and handle invalid inputs with error messages.
@@ -80,47 +114,6 @@ def check_guess(game, guess):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-def update_display(game):
-    """
-    Update and print the display to show the current state of the game, including the word progress and number of misses.
-    
-    Args:
-        game (HangmanGame): The game instance.
-    """
-
-    print(STAGES[game.misses])
-
-    for letter in game.word:
-        if letter in game.guesses:
-            print(letter, end=" ")
-        else:
-            print("_", end=" ")
-
-    print(f"Misses: {game.misses}")
-
-
-
-def start_game(game, word_list):
-    """
-    Start the Hangman game with the given word list and manage the game loop.
-
-    Args:
-        game (HangmanGame): The game instance.
-        word_list (list): The list of words to choose from based on the selected difficulty level.
-    """
-    game.word = random.choice(word_list).upper()
-    game.guesses = []
-    game.misses = 0
-
-    while not check_game_over(game):
-        print("\n")
-        update_display(game)
-        check_guess(game, input("Guess a letter: ").upper())
-
-    print(game.word)
-    print(game.guesses)
-
-
 def check_game_over(game):
     """
     Check if the game is over (either the player has won or lost).
@@ -131,12 +124,15 @@ def check_game_over(game):
     Returns:
         bool: True if the game is over, False otherwise.
     """
-    if game.misses == game.max_misses:
-        print("Game Over! You lost.")
-        return True
 
     if all(letter in game.guesses for letter in game.word):
+        update_display(game)
         print("Congratulations! You won!")
+        return True
+
+    if game.misses >= game.max_misses:
+        print(f"Game Over! You lost, the word was {game.word}")
+        update_display(game)
         return True
 
     return False
