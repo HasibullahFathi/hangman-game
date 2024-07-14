@@ -91,7 +91,6 @@ def start_game(game, word_list):
     game.misses = 0
 
     while not check_game_over(game):
-        print("\n")
         update_display(game)
         check_guess(game, input("Guess a letter: \n").upper())
 
@@ -127,11 +126,13 @@ def check_guess(game, guess):
 
     try:
         if not guess.isalpha() or len(guess) != 1:
-            raise ValueError(f'{Fore.RED}"{guess}"{Fore.RESET} is not accpeted, please enter a single alphabetic letter.')
+            raise ValueError(
+                f'{Fore.RED}"{guess}"{Fore.RESET} is not accpeted,'
+                'please enter a single alphabetic letter.')
 
         if guess in game.guesses:
-            raise ValueError(f"You've already guessed {Fore.RED}'{guess}'\
-                {Fore.RESET} letter.")
+            raise ValueError(
+                f'You have already guessed {Fore.RED}"{guess}"{Fore.RESET}.')
 
         game.guesses.append(guess)
 
@@ -192,5 +193,4 @@ while True:
         print(f"{Fore.BLUE}Thanks for playing!")
         break
     else:
-        print(f'Invalid input "{Back.RED}{play_again}{Back.RESET}".\
-        Please enter Y or N.')
+        print(f'Invalid input "{Back.RED}{play_again}{Back.RESET}".')
