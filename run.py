@@ -3,6 +3,7 @@ import ascii_art
 
 
 STAGES = ascii_art.stages
+LOGO = ascii_art.logo
 
 EASY_WORDS = [
     "apple", "ball", "cat", "dog", "egg", "fish", "goat", "hat", "ink", "jug",
@@ -44,7 +45,7 @@ class HangmanGame:
         while : validates that the player is typing the level correctly to choose the difficulty level.
         """
         while True:
-            self.level = input("Choose one of the difficulty levels: Easy, Medium or Hard: ").lower()
+            self.level = input("Choose one of the difficulty levels: Easy, Medium or Hard to play: ").lower()
             if self.level == "easy":
                 return EASY_WORDS
             elif self.level == "medium":
@@ -119,7 +120,8 @@ def start_game(game, word_list):
     update_display(game)
 
 
-print("Welcome to the Hangman Game!!!\n")
+print("Welcome to the Hangman Game!!!")
+print(f"{LOGO}\n")
 
 def main():
     """
