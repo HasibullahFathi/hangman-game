@@ -49,7 +49,7 @@ class HangmanGame:
             if self.level == "easy":
                 return EASY_WORDS
             elif self.level == "medium":
-                return medium_WORDS
+                return MEDIUM_WORDS
             elif self.level == "hard":
                 return  HARD_WORDS
             else:
@@ -150,4 +150,15 @@ def main():
     start_game(game, word_list)
 
 main()
-        
+
+
+# Create a loop to run the game after game over if the user wants to play the game again.
+while True:
+        play_again = input("Do you want to play again? (Y/N): ").lower()
+        if play_again == "y":
+            main()
+        elif play_again == "n":
+            print("Thanks for playing!")
+            break
+        else:
+            print(f'Invalid input "{play_again}". Please enter Y or N.')
