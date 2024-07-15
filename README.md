@@ -21,23 +21,22 @@ Continue guessing until you either guess the word correctly or use up all your a
 You can read more about it on [Wikipedia](https://en.wikipedia.org/wiki/Hangman_(game)).
 
 ## Features
-- Choose the game level
+- Choose the game level:
     - Get the user input to select the game level.
-    - Select word from the three separate words lists according to the specified game level.
+    - Select a word from the three separate word lists according to the specified game level.
 
 - Visual Feedback:
     - The game uses ASCII art to visually represent the hangman.
     - The hangman diagram progresses with each incorrect guess, providing clear visual feedback on your progress.
 
-- input validation and error hundling
-    - User can not enter numbers or characters other than alphabetic letters.
-    - User must choose a valid game level to play the game.
-    - User must enter a single letter to guess the word.
-    - To Play Again the game user must enter Y for continue or N for exit.
-    - All the error messages are clear to guide the user (user experience).
+- Input Validation and Error Handling:
+    - Users cannot enter numbers or characters other than alphabetic letters.
+    - Users must choose a valid game level to play the game.
+    - Users must enter a single letter to guess the word.
+    - To play again, users must enter 'Y' to continue or 'N' to exit.
+    - All error messages are clear and guide the user for a better user experience.
 
 - Color-Coded Messages:
-
     - The game uses 'colorama' for colored terminal text to make the game more engaging.
     - Different colors are used for prompts and results (e.g., red for errors, green for win messages).
 
@@ -46,20 +45,16 @@ You can read more about it on [Wikipedia](https://en.wikipedia.org/wiki/Hangman_
     - The rules and game flow are clearly explained.
 
 - Replayability:
-
     - After the game ends, players are prompted to play again.
     - The console is cleared between game sessions for a fresh start each time.
 
 - Progress Display:
-
     - The current state of the word is displayed after each guess, showing which letters have been correctly guessed and which positions remain unknown.
 
 - Guess Tracking:
-
     - The game keeps track of all guesses, both correct and incorrect, and provides feedback on the number of misses.
 
 - Win/Loss Feedback:
-
     - Clear messages are displayed when the player wins or loses, including the full word in case of a loss.
 
 ## Code Structure
@@ -84,11 +79,38 @@ The HangmanGame class encapsulates the state and behavior of a Hangman game sess
 - clear_console(): Clears the console screen between game sessions for better readability.
 
 ## Testing
-I have manually tested the App by doing following.
-- Passed the code through the PEP8 linter and confirmed there was no problem.
-- Give some invalid inputs like enter numbers when there supposed to be letters, multiple letters when a single letter was expected, enter wrong input for levels and play again to choose level or play again.
-- I have tested the App in my local terminal and the Code Institute Heroku terminal.
+I have manually tested the App by doing the following:
+- Passed the code through the PEP8 linter and confirmed there were no issues.
+- Provided invalid inputs such as entering numbers where letters were expected, entering multiple letters when a single letter was expected, and entering incorrect input for levels and play-again prompts.
+- Tested the App in my local terminal and the Code Institute Heroku terminal.
 
 ## Bugs
+- To validate the guesses inside the try block, I used the (print) method instead of the (raise ValueError) method to show the error messages. Because of this, the guesses were incremented even if there were errors.
 
-- 
+## Remaining bugs
+- No bugs remaining.
+
+## Validator Testing 
+PEP8 testing
+- No errors ware returned from PEP8online.com
+
+## Deployment
+The code was deployed using Code Institute's mock terminal for Heroku.
+- Steps for deployment:
+    - Prepare Python Application (requirements.txt: Lists the Python dependencies needed for application.)
+    - Create Heroku App
+    - Connect Heroku to GitHub
+    - In the Heroku dashboard, go to the “Deploy” tab of the created app.
+    - In the “Deployment method” section, click on "GitHub".
+    - Authenticate and connect to GitHub account.
+    - Search for the repository and click "Connect".
+    - Deploy Application
+    - In the Heroku dashboard, go to the “Settings” tab.
+    - Click on “Reveal Config Vars” to add any environment variables the application needs in this app only set the PORT to 8000.
+    - View  Application
+    - Once the deployment is complete, click on “Open app” in the Heroku dashboard to view the live application.
+
+## Credits
+- Hangman logo used in App were taken from [ascii.co.uk](https://ascii.co.uk/) page.
+- Hangman Stages used in App were taken from [Chris Horton](https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c) github page with a bit of modification.
+- Code Institute for the deployment terminal
