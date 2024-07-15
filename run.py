@@ -61,6 +61,11 @@ class HangmanGame:
         """
 
         while True:
+            print(
+                'This game has three levels: Easy, Medium, and Hard.'
+                ' According to the chosen difficulty level, words will be\n'
+                'displayed for the user to guess. The user needs to choose'
+                ' the difficulty level at the beginning of the game.\n')
             self.level = input(
                 "Choose one of the difficulty levels: Easy, Medium or Hard:\n"
                 ).lower()
@@ -192,7 +197,7 @@ def clear_console():
 
 while True:
     main()
-    while True:        
+    while True:
         play_again = input("Do you want to play again? (Y/N): \n").lower()
         if play_again == "y":
             clear_console()
