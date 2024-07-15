@@ -1,7 +1,8 @@
 # Hangman Game
 
 Welcome to the Hangman Game!<br>
-This is a classic word guessing game where you need to guess the word one letter at a time. The game has three difficulty levels: Easy, Medium, and Hard. Depending on the chosen difficulty level, different sets of words will be used.
+This is a classic word guessing game where you need to guess the word one letter at a time. The game has three difficulty levels: Easy, Medium, and Hard. Depending on the chosen difficulty level, different sets of words will be used.<br>
+Here is the live version of this game
 
 ![Responsice Mockup](/media/main-img.png)
 
@@ -57,6 +58,8 @@ You can read more about it on [Wikipedia](https://en.wikipedia.org/wiki/Hangman_
 - Win/Loss Feedback:
     - Clear messages are displayed when the player wins or loses, including the full word in case of a loss.
 
+    ![Responsice Mockup](/media/features.png)
+
 ## Code Structure
 
 The HangmanGame class encapsulates the state and behavior of a Hangman game session. Here's a concise summary of what it does:
@@ -84,7 +87,10 @@ I have manually tested the App by doing the following:
 - Provided invalid inputs such as entering numbers where letters were expected, entering multiple letters when a single letter was expected, and entering incorrect input for levels and play-again prompts.
 - Tested the App in my local terminal and the Code Institute Heroku terminal.
 
+![Responsice Mockup](/media/testing.png)
+
 ## Bugs
+### Solved bugs
 - To validate the guesses inside the try block, I used the (print) method instead of the (raise ValueError) method to show the error messages. Because of this, the guesses were incremented even if there were errors.
 
 ## Remaining bugs
@@ -109,8 +115,10 @@ The code was deployed using Code Institute's mock terminal for Heroku.
     - Click on “Reveal Config Vars” to add any environment variables the application needs in this app only set the PORT to 8000.
     - View  Application
     - Once the deployment is complete, click on “Open app” in the Heroku dashboard to view the live application.
+    
+live link of the Hangman game: https://hangman-game24-dcce7de4f198.herokuapp.com/
 
 ## Credits
 - Hangman logo used in App were taken from [ascii.co.uk](https://ascii.co.uk/) page.
 - Hangman Stages used in App were taken from [Chris Horton](https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c) github page with a bit of modification.
-- Code Institute for the deployment terminal
+- Code Institute for the deployment terminal.
