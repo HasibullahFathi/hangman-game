@@ -1,3 +1,4 @@
+import os
 import random
 import colorama
 import ascii_art
@@ -127,7 +128,7 @@ def check_guess(game, guess):
     try:
         if not guess.isalpha() or len(guess) != 1:
             raise ValueError(
-                f'{Fore.RED}"{guess}"{Fore.RESET} is not accpeted,'
+                f'{Fore.RED}"{guess}"{Fore.RESET} is not accpeted, '
                 'please enter a single alphabetic letter.')
 
         if guess in game.guesses:
@@ -167,30 +168,37 @@ def check_game_over(game):
     return False
 
 
-print(f"{Style.BRIGHT}{Back.RED}Welcome to the Hangman Game!!!")
-print(f"{Fore.RED}{LOGO}\n")
-
-
 def main():
     """
     Main function to initialize and start the Hangman game.
     """
+    print(f"{Style.BRIGHT}{Back.RED}Welcome to the Hangman Game!!!")
+    print(f"{Fore.RED}{LOGO}\n")
+
     game = HangmanGame()
     word_list = game.choose_game_level()
     start_game(game, word_list)
 
 
-main()
+def clear_console():
+    """
+    Clear the console screen for better readability between game sessions.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 
 # Create a loop to run the game after game over, if
 # the user wants to play the game again.
 
 while True:
-    play_again = input("Do you want to play again? (Y/N): \n").lower()
-    if play_again == "y":
-        main()
-    elif play_again == "n":
-        print(f"{Fore.BLUE}Thanks for playing!")
-        break
-    else:
-        print(f'Invalid input "{Back.RED}{play_again}{Back.RESET}".')
+    main()
+    while True:        
+        play_again = input("Do you want to play again? (Y/N): \n").lower()
+        if play_again == "y":
+            clear_console()
+            break
+        elif play_again == "n":
+            print(f"{Fore.BLUE}Thanks for playing!")
+            exit()
+        else:
+            print(f'Invalid input "{Back.RED}{play_again}{Back.RESET}".')

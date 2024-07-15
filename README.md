@@ -1,32 +1,21 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Hangman Game
 
-Welcome,
+spelling skills.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+How to Play Hangman
+Objective:
 
-## Reminders
+The primary goal of Hangman is to guess the hidden word, one letter at a time, before the hangman is fully drawn.
+Setup:
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+One player (or the computer) thinks of a word and writes down blank spaces representing each letter in the word. For example, for the word "apple," there would be five blank spaces: _ _ _ _ _.
+Gameplay:
 
-## Creating the Heroku app
+The guessing player suggests letters one at a time.
+If the guessed letter is in the word, it is revealed in all its correct positions. For example, if the letter "p" is guessed, the display would update to _ p p _ _.
+If the guessed letter is not in the word, a part of the hangman (such as the head, body, arms, or legs) is drawn.
+Winning and Losing:
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
+The game continues until either:
+The guessing player correctly identifies all the letters in the word, in which case they win.
+The hang
